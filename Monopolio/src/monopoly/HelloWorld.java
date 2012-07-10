@@ -20,7 +20,6 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import monopoly.camera.CameraHandler;
-import monopoly.logic.Level;
 import monopoly.objects.AnimatedElement;
 import monopoly.objects.AnimatedObject;
 import monopoly.objects.InanimatedElement;
