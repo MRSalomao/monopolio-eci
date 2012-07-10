@@ -1,6 +1,6 @@
 package monopoly.logic;
 
-public class MonopolyBoard
+public class Building
 {
 
 }

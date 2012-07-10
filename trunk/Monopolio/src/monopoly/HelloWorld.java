@@ -86,6 +86,8 @@ public class HelloWorld implements ApplicationListener, InputProcessor {
 		camera.position.set(15, 13, 15);
 		camera.lookAt(0, 3, 0);
 		camera.up.set(0, 0, 1);
+		camera.far = 120.0f;
+		camera.near = 0.1f;
 		camera.update();
 		camera.apply(Gdx.graphics.getGL10());
 	}
