@@ -1,7 +1,6 @@
 package monopoly.camera;
 
 import monopoly.HelloWorld;
-import monopoly.logic.Level;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
