@@ -10,5 +10,6 @@ public enum SpaceType
 	Bairro,
 	PagarImposto1,
 	PagarImposto2,
-	ParadaLivre;
+	ParadaLivre,
+	Property;
 }

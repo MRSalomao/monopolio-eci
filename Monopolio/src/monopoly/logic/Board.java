@@ -10,6 +10,8 @@ import com.badlogic.gdx.math.Vector3;
 
 public class Board
 {
+	private float borderLimit = 4.2f;
+	
 	InanimatedObject boardModel;
 	InanimatedElement boardNode;
 	
@@ -28,7 +30,7 @@ public class Board
 	{
 		try
 		{
-			boardModel = new InanimatedObject("board/board/boaboard/rd", "board/board3.png", false);
+			boardModel = new InanimatedObject("board/board", "board/board3.png", false);
 		}
 		catch (IOException e)
 		{
@@ -38,24 +40,46 @@ public class Board
 		boardNode = new InanimatedElement(boardModel);
 	}
 
-	public Vector3 getPositionFromSpace(int spaceNumber)
+	public Vector3 getPositionFromSpace(int spaceStep)
 	{
-		if (spaceNumber < 10)
+		
+		
+		if (spaceStep == 0)
 		{
-			return new Vector3(4.5f - spaceNumber, -4.5f, 0);
+			return new Vector3(-borderLimit, borderLimit, 0);
 		}
-		else if (spaceNumber < 20)
+		else if	(spaceStep == 10)
 		{
-			return new Vector3(-4.5f, -4.5f + spaceNumber, 0);
+			return new Vector3(-borderLimit, -borderLimit, 0);
 		}
-		else if (spaceNumber < 30)
+		else if (spaceStep == 20)
 		{
-			return new Vector3(-4.5f + spaceNumber, 4.5f, 0);
+			return new Vector3(-borderLimit, borderLimit, 0);
 		}
-		else if (spaceNumber < 40)
+		else if (spaceStep == 30)
 		{
-			return new Vector3(4.5f, 4.5f - spaceNumber, 0);
+			return new Vector3(borderLimit, borderLimit, 0);
+		}
+		
+		else if (spaceStep < 10)
+		{
+			return new Vector3(borderLimit - spaceStep, -borderLimit, 0);
+		}
+		else if (spaceStep < 20)
+		{
+			return new Vector3(-borderLimit, -borderLimit + spaceStep, 0);
+		}
+		else if (spaceStep < 30)
+		{
+			return new Vector3(-borderLimit + spaceStep, borderLimit, 0);
+		}
+		else if (spaceStep < 40)
+		{
+			return new Vector3(borderLimit, borderLimit - spaceStep, 0);
 		}
 		return new Vector3(0, 0, 0);
 	}
 }
+		
+		// Initialize neighborhood spaces
+		

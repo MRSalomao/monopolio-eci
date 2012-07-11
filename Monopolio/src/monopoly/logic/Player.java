@@ -39,7 +39,7 @@ public class Player
 		int result1 = generator.nextInt(6) + 1;
 		int result2 = generator.nextInt(6) + 1;
 		
-		//--- envia resultados dos dados para a GUI
+		this.showInformationMessageToUser("You rolled " + result1 + " and " + result2 + " .");
 		
 		sum += (result1 + result2);
 		plays ++;
@@ -47,6 +47,7 @@ public class Player
 		if(plays == 3){
 			isArrested = true;
 			this.playerPawn.goToJail();
+			this.showInformationMessageToUser("You are arrested!")
 			return;
 		}
 		
@@ -54,25 +55,42 @@ public class Player
 			rowDiceStep(plays, sum);
 		
 		this.playerPawn.move(sum);
+			//--- realiza o efeito do espaço no qual se caiu
 		
 	}
 	
-	privaPawn.te void tentarSairDaPrisao() {
+	private void tentarSairDaPrisao() {
 		int result1 = generator.nextInt(6) + 1;
 		int result2 = generator.nextInt(6) + 1;
+		this.showInformationMessageToUser("You rolled " + result1 + " and " + result2 + " .");
 		
 		leavePrisonAttempts++;
 		
 		if(result1 == result2){
 			isArrested = false;
 			leavePrisonAttempts = 0;
+			this.showInformationMessageToUser("You are free!");
 			this.playerPawn.move(result1 + result2);
 		}
 		
 		if(leavePrisonAttempts == 3){
-			isArrested = false;
-			leavePrisonAttempts = 0;
-			playerCreditCard.Charge(500);
+			if(playerCreditCard.money << 500)
+				declareBankruptcy();
+			else{
+				isArrested = false;
+				leavePrisonAttempts = 0;
+				playerCreditCard.debit(500);
+			}
 		}
+	}
+
+	public void declareBankruptcy() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public void showInformationMessageToUser(String message)
+	{
+		//TODO show this message on GUI, to click OK
 	}
 }

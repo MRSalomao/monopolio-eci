@@ -7,11 +7,11 @@ import monopoly.objects.InanimatedObject;
 
 public class Pawn
 {
-	
+	public int currentSpace;
 	InanimatedObject pawnModel;
 	InanimatedElement pawnNode;
 	
-	Pawn(Color color)
+	public Pawn(Color color)
 	{
 		try
 		{
@@ -24,7 +24,9 @@ public class Pawn
 		
 		pawnNode = new InanimatedElement(pawnModel);
 		
-		pawnNode.position.set(vector)
+		currentSpace = 0;
+		
+		pawnNode.position.set(Board.getSharedInstance().getPositionFromSpace(currentSpace));
 	}
 	
 	public void goToJail(){
