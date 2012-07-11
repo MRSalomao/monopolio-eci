@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import monopoly.camera.CameraHandler;
+import monopoly.logic.Board;
 import monopoly.objects.AnimatedElement;
 import monopoly.objects.AnimatedObject;
 import monopoly.objects.InanimatedElement;
@@ -42,18 +43,16 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g3d.loaders.ModelLoaderOld;
 import com.badlogic.gdx.math.Vector2;
 
-public class HelloWorld implements ApplicationListener, InputProcessor {
+public class Monopoly implements ApplicationListener, InputProcessor {
 	
 	public static Camera camera;
 	float number;
 	InanimatedObject hotel;
 	InanimatedObject house;
-	InanimatedObject board;
 	InanimatedElement inEle1;
 	InanimatedElement inEle2;
-	InanimatedElement inEle3;
 	static ObjectRenderer objRenderer;
-	
+	public Board board;
 	
 	@Override
 	public void create () {
@@ -64,7 +63,6 @@ public class HelloWorld implements ApplicationListener, InputProcessor {
 			
 			house = new InanimatedObject("house", "house.png", false);
 			
-			board = new InanimatedObject("board", "board3.png", false);
 		} 
 		catch (IOException e)
 		{
@@ -73,16 +71,17 @@ public class HelloWorld implements ApplicationListener, InputProcessor {
 		
 		inEle1 = new InanimatedElement(hotel); 
 		inEle2 = new InanimatedElement(house);
-		inEle3 = new InanimatedElement(board);
 		
-		inEle2.position.add(0f, 2f, 0.5f);
+		board = new Board();
+		
+		inEle2.position.add(0f, 2f, 0.0f);
 		
 		
 		Gdx.input.setInputProcessor(this);
 		
 		camera = new PerspectiveCamera(67, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		
-		camera.position.set(15, 13, 15);
+		camera.position.set(15, 13, 10);
 		camera.lookAt(0, 3, 0);
 		camera.up.set(0, 0, 1);
 		camera.far = 120.0f;
