@@ -7,6 +7,7 @@ import monopoly.objects.InanimatedObject;
 
 public class Pawn
 {
+	
 	InanimatedObject pawnModel;
 	InanimatedElement pawnNode;
 	
@@ -23,7 +24,7 @@ public class Pawn
 		
 		pawnNode = new InanimatedElement(pawnModel);
 		
-		
+		pawnNode.position.set(vector)
 	}
 	
 	public void goToJail(){

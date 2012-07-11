@@ -9,8 +9,7 @@ public class Property extends Space
 	
 	public Property(SpaceType type)
 	{
-		super.spaceType = type;
-		
+		super(type);
 	}
 
 	@Override

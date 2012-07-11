@@ -8,6 +8,11 @@ public abstract class Space
 	public int spaceNumber;
 	public SpaceType spaceType;
 	
+	public Space(SpaceType type)
+	{
+		spaceType = type;
+	}
+	
 	public abstract void effect(Player player);
 	
 	public void movePawnToHere(Pawn pawn)

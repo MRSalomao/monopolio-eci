@@ -5,60 +5,26 @@ import java.util.Random;
 public class Player
 {
 	private Random generator = new Random();
+	public Color playerColor;
 	public String playerName;
 	public int playerID;
 	public Pawn playerPawn;
 	public int numberOfSDPcards;
 	public boolean isArrested;
-	public int[][] lastResults;
-	public PlayerCard playerCard;
+	public PlayerCreditCard playerCreditCard;
+	private int leavePrisonAttempts = 0;
 	
 	public Player(String name, int id, Color color)
 	{
 		this.playerName = name;
+		this.playerColor = color;
 		this.playerID = id;
 		this.numberOfSDPcards = 0;
 		this.isArrested = false;
-		this.lastResults = new int[3][2];
 		playerPawn = new Pawn(color);
-		playerCard = new PlayerCard();
-	};
-	
-	/*
-	public void rowDice(){
-		//randomizando dados
-		int result1 = (int)(Math.random() * 6) + 1;
-		int result2 = (int)(Math.random() * 6) + 1;
-		
-		
-		//--- avisar a GUI dos resultados dos dados2
-		
-		//atualizando a lista de últimos resultados
-		this.lastResults[2][0] = this.lastResults[1][0];
-		this.lastResults[2][1] = this.lastResults[1][1];
-		this.lastResults[1][0] = this.lastResults[0][0];
-		this.lastResults[1][1] = this.lastResults[0][1];
-		this.lastResults[0][0] = result1;
-		this.lastResults[0][1] = result2;
-		
-		//checando se o jogador vai para a cadeia por lançamentos repetidos
-		if (lastResults[0][0] == lastResults[0][1]){
-			if (lastResults[1][0] == lastResults[1][1]){
-				if (lastResults[2][0] == lastResults[2][1]){
-					
-					//--- avisar a GUI que foi para cadeia
-					
-					this.playerPawn.goToJail();
-					return;
-				}
-			}
-		}
-		
-		//caso não tenha sido preso, mover espaços necessários
-		this.playerPawn.move(result1 + result2);
-		
-	}*/
-	
+		playerCreditCard = new PlayerCreditCard();
+	}
+
 	public void rowDice(){
 		int plays = 0;
 		int sum = 0;
@@ -73,43 +39,40 @@ public class Player
 		int result1 = generator.nextInt(6) + 1;
 		int result2 = generator.nextInt(6) + 1;
 		
-		System.out.print(result1);
-		System.out.print(result2);
+		//--- envia resultados dos dados para a GUI
 		
 		sum += (result1 + result2);
 		plays ++;
 		
 		if(plays == 3){
+			isArrested = true;
 			this.playerPawn.goToJail();
 			return;
 		}
 		
-		if(result1 == result2){
-			if(isArrested)
-			{
-				isArrested = false;
-				this.playerPawn.move(sum);
-			}
-			else
-				rowDiceStep(plays, sum);
-		}
-		
-		if(isArrested)
-		{
-			if(plays == 3)
-			{
-				isArrested = false;
-				playerCard.charge(500);
-			}
-			else
-				rowDiceStep(plays, 0);
-		}
+		if(result1 == result2)
+			rowDiceStep(plays, sum);
 		
 		this.playerPawn.move(sum);
+		
 	}
 	
-	private void tentarSairDaPrisao() {
-		// TODO Auto-generated method stub
+	privaPawn.te void tentarSairDaPrisao() {
+		int result1 = generator.nextInt(6) + 1;
+		int result2 = generator.nextInt(6) + 1;
 		
+		leavePrisonAttempts++;
+		
+		if(result1 == result2){
+			isArrested = false;
+			leavePrisonAttempts = 0;
+			this.playerPawn.move(result1 + result2);
+		}
+		
+		if(leavePrisonAttempts == 3){
+			isArrested = false;
+			leavePrisonAttempts = 0;
+			playerCreditCard.Charge(500);
+		}
 	}
 }
