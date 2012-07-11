@@ -1,5 +1,7 @@
 package monopoly.logic;
 
+import com.badlogic.gdx.Gdx;
+
 public class Property extends Space
 {
 	public String name;
@@ -16,8 +18,8 @@ public class Property extends Space
 	@Override
 	public void effect(Player player)
 	{
-		// TODO Auto-generated method stub
-		
+		if(owner != null && owner != player)
+			payRent(player);
 	}
 	
 	public void buy(Player ownerPlayer)
@@ -26,7 +28,11 @@ public class Property extends Space
 		{
 			this.owner = ownerPlayer;
 			owner.playerCreditCard.debit(price);
+			ownerPlayer.properties.add(this);
+			Gdx.app.log("", "You bought this property for " + price + " dollars!");
+			return;
 		}
+		Gdx.app.log("", "You cannot afford this property, or it's already owned.");
 	}
 	
 	public void payRent(Player player)

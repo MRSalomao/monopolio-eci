@@ -34,8 +34,10 @@ import com.badlogic.gdx.Input.Keys;
 
 public class Monopoly implements ApplicationListener, InputProcessor {
 	
-	private ArrayList<Player> players = new ArrayList<Player>();
-	private InGameGUI baseGUI;
+	public ArrayList<Player> players = new ArrayList<Player>();
+	public InGameGUI baseGUI;
+	
+	public int currentPlayer = -1;
 
 	private static Monopoly sharedInstance;
 	
@@ -51,7 +53,15 @@ public class Monopoly implements ApplicationListener, InputProcessor {
 		{
 			players.add( new Player("player " + i, i, Color.values()[i]) );
 		}
+	}
+	
+	public void callNextPlayer()
+	{
+		currentPlayer++;
+		if(currentPlayer == players.size())
+			currentPlayer = 0;
 		
+		players.get(currentPlayer).rollDice();
 	}
 	
 	@Override
@@ -61,7 +71,7 @@ public class Monopoly implements ApplicationListener, InputProcessor {
 		
 		Gdx.input.setInputProcessor(this);
 		
-		Board.getSharedInstance();
+		Board.getSharedInstance().initSpaces();
 		
 		baseGUI = new MainMenu();
 	}
