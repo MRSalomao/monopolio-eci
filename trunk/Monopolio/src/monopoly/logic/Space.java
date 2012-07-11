@@ -7,6 +7,7 @@ public abstract class Space
 	public Vector3 centerPosition;
 	public int spaceNumber;
 	public SpaceType spaceType;
+	public int ID;
 	
 	public Space(SpaceType type)
 	{

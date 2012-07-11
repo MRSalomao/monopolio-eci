@@ -31,9 +31,21 @@ public class Neighbourhood extends Property
 		return hotelCostValue;
 	}
 	
-	public void increaseNumberOfHouses()
+	public void buildHouse() 
 	{
-		numberOfHouses++;
+		if (numberOfHouses < 4)
+		{
+			numberOfHouses++;
+			//TODO: place house on the board
+		}
 	}
 	
+	private void buildHotel() 
+	{
+		if (numberOfHouses == 4)
+		{
+			//TODO: remove houses on the board
+			//TODO: place hotel on the board
+		}
+	}
 }

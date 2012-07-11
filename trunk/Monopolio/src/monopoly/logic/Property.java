@@ -4,7 +4,7 @@ public class Property extends Space
 {
 	public String name;
 	public int price;
-	public int ID;
+	public int rent;
 	private Player owner;
 	
 	public Property(SpaceType type)
@@ -18,22 +18,27 @@ public class Property extends Space
 		// TODO Auto-generated method stub
 		
 	}
-
-	@Override
-	public void movePawnToHere(Pawn pawn)
+	
+	public void buy(Player ownerPlayer)
 	{
-		// TODO Auto-generated method stub
-		
+		if (ownerPlayer.playerCreditCard.money >= price)
+		{
+			this.owner = ownerPlayer;
+			owner.playerCreditCard.debit(price);
+		}
 	}
 	
-	public void buy()
+	public void payRent(Player player)
 	{
-		
-	}
-	
-	public void payRent()
-	{
-		
+		if (owner != null)
+		{
+			if(player.playerCreditCard.money > rent){
+				player.playerCreditCard.debit(rent);
+				owner.playerCreditCard.credit(rent);
+			}
+			else
+				player.declareBankruptcy();
+		}
 	}
 	
 	public void recoverFromMortgage()
