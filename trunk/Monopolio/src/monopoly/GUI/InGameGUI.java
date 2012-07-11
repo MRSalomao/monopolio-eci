@@ -1,6 +1,6 @@
 package monopoly.GUI;
 
-public class InGameGUI
+public abstract class InGameGUI
 {
-
+	public abstract void effect();
 }

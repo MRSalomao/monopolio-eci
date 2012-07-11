@@ -18,26 +18,35 @@ package monopoly;
 
 import java.util.ArrayList;
 
+import monopoly.GUI.InGameGUI;
+import monopoly.GUI.MainMenu;
 import monopoly.camera.CameraHandler;
 import monopoly.logic.Board;
 import monopoly.logic.Color;
 import monopoly.logic.Player;
+import monopoly.logic.Space;
 import monopoly.objects.ObjectRenderer;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.Input.Keys;
 
 public class Monopoly implements ApplicationListener, InputProcessor {
 	
 	private ArrayList<Player> players = new ArrayList<Player>();
-	private Board board;
+	private InGameGUI baseGUI;
 
-	public void startGame() {
-		
-		// **HARDCODED**
-		int numberOfPlayers = 6; // TODO: input for number of players
-		// **HARDCODED**
+	private static Monopoly sharedInstance;
+	
+	public static Monopoly getSharedInstance()
+	{
+		return sharedInstance;
+	}
+	
+	
+	public void startGame(int numberOfPlayers) 
+	{
 		for (int i=0; i < numberOfPlayers; i++) 
 		{
 			players.add( new Player("player " + i, i, Color.values()[i]) );
@@ -48,13 +57,13 @@ public class Monopoly implements ApplicationListener, InputProcessor {
 	@Override
 	public void create () {
 		
+		sharedInstance = this;
+		
 		Gdx.input.setInputProcessor(this);
 		
-		board = new Board();
+		Board.getSharedInstance();
 		
-		startGame();
-
-		
+		baseGUI = new MainMenu();
 	}
 
 	@Override
@@ -89,6 +98,7 @@ public class Monopoly implements ApplicationListener, InputProcessor {
 	@Override
 	public boolean keyDown(int keycode)
 	{
+		baseGUI.effect();
 		// TODO Auto-generated method stub
 		return false;
 	}

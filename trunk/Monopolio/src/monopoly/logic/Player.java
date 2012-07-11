@@ -1,5 +1,6 @@
 package monopoly.logic;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Player
@@ -12,7 +13,9 @@ public class Player
 	public int numberOfSDPcards;
 	public boolean isArrested;
 	public PlayerCreditCard playerCreditCard;
-	private int leavePrisonAttempts = 0;
+	public  ArrayList<Property> properties;
+	private int leavePrisonAttempts;
+	private Board gameBoard;
 	
 	public Player(String name, int id, Color color)
 	{
@@ -21,8 +24,10 @@ public class Player
 		this.playerID = id;
 		this.numberOfSDPcards = 0;
 		this.isArrested = false;
+		this.leavePrisonAttempts = 0;
 		playerPawn = new Pawn(color);
 		playerCreditCard = new PlayerCreditCard();
+		this.gameBoard = Board.getSharedInstance();
 	}
 
 	public void rowDice(){
@@ -47,7 +52,7 @@ public class Player
 		if(plays == 3){
 			isArrested = true;
 			this.playerPawn.goToJail();
-			this.showInformationMessageToUser("You are arrested!")
+			this.showInformationMessageToUser("You are arrested!");
 			return;
 		}
 		
@@ -73,12 +78,17 @@ public class Player
 			this.playerPawn.move(result1 + result2);
 		}
 		
-		if(leavePrisonAttempts == 3){
-			if(playerCreditCard.money << 500)
+		if(leavePrisonAttempts == 3)
+		{
+			if(playerCreditCard.money < 500)
+			{
 				declareBankruptcy();
-			else{
+			}
+			else
+			{
 				isArrested = false;
 				leavePrisonAttempts = 0;
+				this.showInformationMessageToUser("You are free, but you have to pay 500...");
 				playerCreditCard.debit(500);
 			}
 		}
@@ -92,5 +102,37 @@ public class Player
 	public void showInformationMessageToUser(String message)
 	{
 		//TODO show this message on GUI, to click OK
+	}
+	
+	public void buyProperty()
+	{
+		if(gameBoard.spaces.get(playerPawn.currentSpace).spaceType == SpaceType.Property)
+			((Property)gameBoard.spaces.get(playerPawn.currentSpace) ).buy(this);
+	}
+	
+	public void buildHouse()
+	{
+		if(gameBoard.spaces.get(playerPawn.currentSpace).spaceType == SpaceType.Property){
+			if (((Property)gameBoard.spaces.get(playerPawn.currentSpace)).type == PropertyType.Neighbourhood){
+				if(((Neighbourhood)gameBoard.spaces.get(playerPawn.currentSpace)).buildHouse(this)){
+					this.showInformationMessageToUser("Your house was built.");
+					return;
+				}
+			}
+		}
+		this.showInformationMessageToUser("You can't build a house over there.");
+	}
+	
+	public void buildHotel()
+	{
+		if(gameBoard.spaces.get(playerPawn.currentSpace).spaceType == SpaceType.Property){
+			if (((Property)gameBoard.spaces.get(playerPawn.currentSpace)).type == PropertyType.Neighbourhood){
+				if(((Neighbourhood)gameBoard.spaces.get(playerPawn.currentSpace)).buildHotel(this)){
+					this.showInformationMessageToUser("Your hotel was built.");
+					return;
+				}
+			}
+		}
+		this.showInformationMessageToUser("You can't build a hotel over there.");
 	}
 }

@@ -4,14 +4,18 @@ import com.badlogic.gdx.math.Vector3;
 
 public abstract class Space
 {
-	public Vector3 centerPosition;
 	public int spaceNumber;
 	public SpaceType spaceType;
 	public int ID;
 	
-	public Space(SpaceType type)
+	private Vector3 centerPosition;
+	
+	public Space(SpaceType type, int spaceNumber)
 	{
+		this.spaceNumber = spaceNumber;
 		spaceType = type;
+		
+		centerPosition = Board.getSharedInstance().getPositionFromSpace(spaceNumber);
 	}
 	
 	public abstract void effect(Player player);

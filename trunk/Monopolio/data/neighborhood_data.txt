@@ -1,23 +1,23 @@
-#Nome #Preço #Cor #CustoCasa #CustoHotel #ValorHipoteca
-connecticutavenue 120 0 12 24 36
-vermontavenue 100 0 10 20 30
-orientalavenue 100 0 10 20 30
-balticavenue 60 1 6 12 18
-mediterraneanavenue 60 1 6 12 18
-boardwalk 400 2 40 80 120
-parkpalace 350 2 35 70 105
-pennsylvaniaavenue 320 3 32 64 96
-northcarolinaavenue 300 3 30 60 90
-pacificavenue 300 3 30 60 90
-marvingardens 280 4 28 54 84
-ventoravenue 260 4 26 52 78
-atlantic 260 4 26 52 78
-illinoisavenue 240 5 24 48 72
-indianaavenue 220 5 22 44 66
-kentuckyavenue 220 5 22 44 66
-newyorkavenue 200 6 20 40 60
-teneseeavenue 180 6 18 36 54
-stjamesplace 160 6 16 32 48
-virginiaavenue 160 7 16 32 48
-statesavenue 140 7 14 28 42
-stcharlesplace 140 7 14 28 42
+#Numero #Nome #Preço #Cor #CustoCasa #CustoHotel #ValorHipoteca #Aluguel
+9 connecticutavenue 120 0 12 24 36 12
+8 vermontavenue 100 0 10 20 30 10
+6 orientalavenue 100 0 10 20 30 10
+3 balticavenue 60 1 6 12 18 6
+1 mediterraneanavenue 60 1 6 12 18 6
+39 boardwalk 400 2 40 80 120 40
+37 parkpalace 350 2 35 70 105 35
+34 pennsylvaniaavenue 320 3 32 64 96 32
+32 northcarolinaavenue 300 3 30 60 90 30
+31 pacificavenue 300 3 30 60 90 30
+29 marvingardens 280 4 28 54 84 28
+27 ventoravenue 260 4 26 52 78 26
+26 atlantic 260 4 26 52 78 26
+24 illinoisavenue 240 5 24 48 72 24
+23 indianaavenue 220 5 22 44 66 22
+21 kentuckyavenue 220 5 22 44 66 22
+19 newyorkavenue 200 6 20 40 60 20
+18 teneseeavenue 180 6 18 36 54 18
+16 stjamesplace 160 6 16 32 48 16
+14 virginiaavenue 160 7 16 32 48 16
+13 statesavenue 140 7 14 28 42 14
+11 stcharlesplace 140 7 14 28 42 14
