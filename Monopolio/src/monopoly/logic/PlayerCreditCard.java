@@ -1,6 +1,6 @@
 package monopoly.logic;
 
-public class PlayerCard
+public class PlayerCreditCard
 {
 
 }

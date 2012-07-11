@@ -16,7 +16,7 @@ public class Board
 	{
 		try
 		{
-			boardModel = new InanimatedObject("board", "board3.png", false);
+			boardModel = new InanimatedObject("board/board/boaboard/rd", "board/board3.png", false);
 		}
 		catch (IOException e)
 		{
