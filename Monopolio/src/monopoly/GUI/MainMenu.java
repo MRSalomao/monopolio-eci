@@ -16,23 +16,27 @@ public class MainMenu extends InGameGUI
 	{
 		if (Gdx.input.isKeyPressed(Keys.NUM_3))
 		{
-			Gdx.app.log("", "Você selecionou 3 jogadores");
+			Gdx.app.log("", "You selected 3 players");
 			Monopoly.getSharedInstance().startGame(3);
+			Monopoly.getSharedInstance().baseGUI = new SleepState();
 		}
 		else if (Gdx.input.isKeyPressed(Keys.NUM_4))
 		{
-			Gdx.app.log("", "Você selecionou 4 jogadores");
+			Gdx.app.log("", "You selected 4 players");
 			Monopoly.getSharedInstance().startGame(4);
+			Monopoly.getSharedInstance().baseGUI = new SleepState();
 		}
 		else if (Gdx.input.isKeyPressed(Keys.NUM_5))
 		{
-			Gdx.app.log("", "Você selecionou 5 jogadores");
+			Gdx.app.log("", "You selected 5 players");
 			Monopoly.getSharedInstance().startGame(5);
+			Monopoly.getSharedInstance().baseGUI = new SleepState();
 		}
 		else if (Gdx.input.isKeyPressed(Keys.NUM_6))
 		{
-			Gdx.app.log("", "Você selecionou 6 jogadores");
+			Gdx.app.log("", "You selected 6 players");
 			Monopoly.getSharedInstance().startGame(6);
+			Monopoly.getSharedInstance().baseGUI = new SleepState();
 		}
 	}
 }
