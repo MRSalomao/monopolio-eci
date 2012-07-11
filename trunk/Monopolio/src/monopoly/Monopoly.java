@@ -16,87 +16,51 @@
 
 package monopoly;
 
-import java.io.IOException;
-import java.io.InputStream;
+import java.util.ArrayList;
 
 import monopoly.camera.CameraHandler;
 import monopoly.logic.Board;
-import monopoly.objects.AnimatedElement;
-import monopoly.objects.AnimatedObject;
-import monopoly.objects.InanimatedElement;
-import monopoly.objects.InanimatedObject;
+import monopoly.logic.Color;
+import monopoly.logic.Player;
 import monopoly.objects.ObjectRenderer;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.graphics.Camera;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL10;
-import com.badlogic.gdx.graphics.Mesh;
-import com.badlogic.gdx.graphics.PerspectiveCamera;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.Pixmap.Format;
-import com.badlogic.gdx.graphics.Texture.TextureFilter;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g3d.loaders.ModelLoaderOld;
-import com.badlogic.gdx.math.Vector2;
 
 public class Monopoly implements ApplicationListener, InputProcessor {
 	
-	public static Camera camera;
-	float number;
-	InanimatedObject hotel;
-	InanimatedObject house;
-	InanimatedElement inEle1;
-	InanimatedElement inEle2;
-	static ObjectRenderer objRenderer;
-	public Board board;
+	private ArrayList<Player> players = new ArrayList<Player>();
+	private Board board;
+
+	public void startGame() {
+		
+		// **HARDCODED**
+		int numberOfPlayers = 6; // TODO: input for number of players
+		// **HARDCODED**
+		for (int i=0; i < numberOfPlayers; i++) 
+		{
+			players.add( new Player("player " + i, i, Color.values()[i]) );
+		}
+		
+	}
 	
 	@Override
 	public void create () {
 		
-		try
-		{
-			hotel = new InanimatedObject("hotel", "hotel2.png", false);
-			
-			house = new InanimatedObject("house", "house.png", false);
-			
-		} 
-		catch (IOException e)
-		{
-			e.printStackTrace();
-		}
-		
-		inEle1 = new InanimatedElement(hotel); 
-		inEle2 = new InanimatedElement(house);
+		Gdx.input.setInputProcessor(this);
 		
 		board = new Board();
 		
-		inEle2.position.add(0f, 2f, 0.0f);
+		startGame();
+
 		
-		
-		Gdx.input.setInputProcessor(this);
-		
-		camera = new PerspectiveCamera(67, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		
-		camera.position.set(15, 13, 10);
-		camera.lookAt(0, 3, 0);
-		camera.up.set(0, 0, 1);
-		camera.far = 120.0f;
-		camera.near = 0.1f;
-		camera.update();
-		camera.apply(Gdx.graphics.getGL10());
 	}
 
 	@Override
-	public void render () {		
-
+	public void render () 
+	{		
 		CameraHandler.getSharedInstance().orbitalCameraUpdate();
-		
-
-		
 		ObjectRenderer.getSharedInstance().drawAll();
 	}
 

@@ -4,11 +4,16 @@ import monopoly.Monopoly;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Camera;
+import com.badlogic.gdx.graphics.PerspectiveCamera;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector3;
 
+
 public class CameraHandler
 {
+	public static Camera camera;
+	
 	private static CameraHandler sharedInstance;
 	
 	public static CameraHandler getSharedInstance()
@@ -19,12 +24,23 @@ public class CameraHandler
 		}
 		return sharedInstance;
 	}
+	
+	public CameraHandler()
+	{
+		camera = new PerspectiveCamera(67, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+		camera.lookAt(0, 3, 0);
+		camera.up.set(0, 0, 1);
+		camera.far = 120.0f;
+		camera.near = 0.1f;
+		camera.update();
+		camera.apply(Gdx.graphics.getGL10());
+	}
 
 	private float _PI = 3.141592f;
 
 	private boolean touchOn = false;
-	private float _orbit = 13f;
-	private float _orbitMin = 3f;
+	private float _orbit = 5f;
+	private float _orbitMin = 1f;
 	private float _theta = 1.2f;
 	private float _phi = 1.0f;
 	private float _vTheta = 0f;
@@ -103,10 +119,10 @@ public class CameraHandler
 		float z = _orbit * MathUtils.sin(_phi) + _lookAtPosition.z;
 
 		// Translate camera and change its 'lookAt' position
-		Monopoly.camera.position.set(x, y, z);
-		Monopoly.camera.lookAt(_lookAtPosition.x, _lookAtPosition.y, _lookAtPosition.z);
-		Monopoly.camera.update();
-		Monopoly.camera.apply(Gdx.graphics.getGL10());
+		camera.position.set(x, y, z);
+		camera.lookAt(_lookAtPosition.x, _lookAtPosition.y, _lookAtPosition.z);
+		camera.update();
+		camera.apply(Gdx.graphics.getGL10());
 
 		// Add damping to camera velocities
 		_vTheta *= _damping;
