@@ -2,6 +2,7 @@ package monopoly.logic;
 
 import java.io.IOException;
 
+import monopoly.camera.CameraHandler;
 import monopoly.objects.InanimatedElement;
 import monopoly.objects.InanimatedObject;
 
@@ -11,6 +12,17 @@ public class Board
 {
 	InanimatedObject boardModel;
 	InanimatedElement boardNode;
+	
+	private static Board sharedInstance;
+	
+	public static Board getSharedInstance()
+	{
+		if (sharedInstance == null)
+		{
+			sharedInstance = new Board();
+		}
+		return sharedInstance;
+	}
 	
 	public Board()
 	{

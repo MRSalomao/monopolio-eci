@@ -9,9 +9,11 @@ public class Neighbourhood extends Property
 	private Boolean hotelExists;
 	private String color;
 	
-	public Neighbourhood(SpaceType type)
+	public Neighbourhood(SpaceType type, int rentValue, String name)
 	{
 		super(type);
+		super.name = name;
+		rent = rentValue;
 	}
 	
 	public int getRentValue()
@@ -26,6 +28,12 @@ public class Neighbourhood extends Property
 	
 	public int getHotelCostValue()
 	{
-		return houseCostValue;
+		return hotelCostValue;
 	}
+	
+	public void increaseNumberOfHouses()
+	{
+		numberOfHouses++;
+	}
+	
 }

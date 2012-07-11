@@ -12,7 +12,7 @@ import com.badlogic.gdx.math.Vector3;
 
 public class CameraHandler
 {
-	public static Camera camera;
+	public Camera camera;
 	
 	private static CameraHandler sharedInstance;
 	
