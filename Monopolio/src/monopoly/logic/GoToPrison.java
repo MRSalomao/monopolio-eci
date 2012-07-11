@@ -2,9 +2,9 @@ package monopoly.logic;
 
 public class GoToPrison extends Space
 {
-	public GoToPrison(SpaceType type)
+	public GoToPrison(SpaceType type, int spaceNumber)
 	{
-		super(type);
+		super(type, spaceNumber);
 	}
 	
 	@Override

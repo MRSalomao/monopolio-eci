@@ -2,8 +2,17 @@ package monopoly.logic;
 
 public class PayTax extends Space
 {
-	public PayTax(SpaceType type)
+	private int tax;
+	
+	public PayTax(SpaceType type, int spaceNumber)
 	{
-		super(type);
+		super(type, spaceNumber);
+		tax = 1000;
+	}
+
+	@Override
+	public void effect(Player player) 
+	{
+		player.playerCreditCard.credit(tax);
 	}
 }

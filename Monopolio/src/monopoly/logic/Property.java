@@ -4,12 +4,13 @@ public class Property extends Space
 {
 	public String name;
 	public int price;
-	public int rent;
-	private Player owner;
+	public Player owner;
+	public PropertyType type;
 	
-	public Property(SpaceType type)
+	public Property(PropertyType propType, int spaceNumber)
 	{
-		super(type);
+		super(SpaceType.Property, spaceNumber);
+		this.type = propType;
 	}
 
 	@Override
@@ -21,7 +22,7 @@ public class Property extends Space
 	
 	public void buy(Player ownerPlayer)
 	{
-		if (ownerPlayer.playerCreditCard.money >= price)
+		if (owner == null && ownerPlayer.playerCreditCard.money >= price)
 		{
 			this.owner = ownerPlayer;
 			owner.playerCreditCard.debit(price);
@@ -30,15 +31,7 @@ public class Property extends Space
 	
 	public void payRent(Player player)
 	{
-		if (owner != null)
-		{
-			if(player.playerCreditCard.money > rent){
-				player.playerCreditCard.debit(rent);
-				owner.playerCreditCard.credit(rent);
-			}
-			else
-				player.declareBankruptcy();
-		}
+		
 	}
 	
 	public void recoverFromMortgage()
