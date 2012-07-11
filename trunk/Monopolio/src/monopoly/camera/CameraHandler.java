@@ -1,6 +1,6 @@
 package monopoly.camera;
 
-import monopoly.HelloWorld;
+import monopoly.Monopoly;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -103,10 +103,10 @@ public class CameraHandler
 		float z = _orbit * MathUtils.sin(_phi) + _lookAtPosition.z;
 
 		// Translate camera and change its 'lookAt' position
-		HelloWorld.camera.position.set(x, y, z);
-		HelloWorld.camera.lookAt(_lookAtPosition.x, _lookAtPosition.y, _lookAtPosition.z);
-		HelloWorld.camera.update();
-		HelloWorld.camera.apply(Gdx.graphics.getGL10());
+		Monopoly.camera.position.set(x, y, z);
+		Monopoly.camera.lookAt(_lookAtPosition.x, _lookAtPosition.y, _lookAtPosition.z);
+		Monopoly.camera.update();
+		Monopoly.camera.apply(Gdx.graphics.getGL10());
 
 		// Add damping to camera velocities
 		_vTheta *= _damping;

@@ -24,8 +24,7 @@ public class InanimatedObject
 	{
 		this.isTransparent = isTransparent;
 		
-		mesh = ModelLoaderOld.loadObj
-				(Gdx.files.internal("data/" + meshFileName + ".obj").read());
+		mesh = ModelLoaderOld.loadObj(Gdx.files.internal("data/" + meshFileName + ".obj").read());
 				
 		if (isTransparent)
 		{			

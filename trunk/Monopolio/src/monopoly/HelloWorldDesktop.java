@@ -20,6 +20,6 @@ import com.badlogic.gdx.backends.jogl.JoglApplication;
 
 public class HelloWorldDesktop {
 	public static void main (String[] argv) {
-		new JoglApplication(new HelloWorld(), "Monopoly", 1280, 720, false);
+		new JoglApplication(new Monopoly(), "Monopoly", 1280, 720, false);
 	}
 }
