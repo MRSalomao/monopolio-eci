@@ -1,0 +1,1 @@
+Projeto de um jogo de monopólio para a disciplina de ESOO
